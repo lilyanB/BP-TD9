@@ -34,13 +34,17 @@ app.get('/',(req,res)=>{
     res.render('index') ;
     })
 
-app.get('/songForACity',(req,res)=>{
+app.get('/fakeBayc',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/about.html'))
+    res.render('fakeBayc') ;
+    })
+
+app.get('/songForACity',(req,res)=>{
+    //res.sendFile(path.resolve(__dirname, 'dist/contact.html'))
     res.render('songForACity') ;
     })
 
-
-app.get('/tokens',(req,res)=>{
-    //res.sendFile(path.resolve(__dirname, 'dist/contact.html'))
-    res.render('tokens') ;
+app.get('/Nefturians',(req,res)=>{
+    //res.sendFile(path.resolve(__dirname, 'dist/about.html'))
+    res.render('Nefturians') ;
     })
