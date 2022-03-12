@@ -43,7 +43,7 @@
               "
             >
               <div class="flex flex-col space-y-6">
-                <h3 class="text-center">Token Nefturians with Rinkeby</h3>
+                <h3 class="text-center">Token fakeMeebits with Rinkeby</h3>
                 <div class="flex flex-col space-y-2">
                   <button
                     onclick="loginWithEth()"
@@ -171,7 +171,7 @@
               // why -> because this specific contract address is on ethereum.
               // When you click login, just make sure your network is Rinkeby and it will all workout.
               async function getContractSymbol() {
-                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
+                const CONTRACT_ADDRESS = "0x66e0f56e86906fd7ee186d29a1a25dc12019c7f3";
                 const contract = new window.web3.eth.Contract(
                   window.ABI,
                   CONTRACT_ADDRESS
@@ -183,7 +183,7 @@
               }
         
               async function getBalanceOf() {
-                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
+                const CONTRACT_ADDRESS = "0x66e0f56e86906fd7ee186d29a1a25dc12019c7f3";
                 const contract = new window.web3.eth.Contract(
                   window.ABI,
                   CONTRACT_ADDRESS
@@ -195,21 +195,15 @@
               }
         
               async function MintNFT() {
-                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
+                const CONTRACT_ADDRESS = "0x66e0f56e86906fd7ee186d29a1a25dc12019c7f3";
                 const contract = new window.web3.eth.Contract(
                   window.ABI,
                   CONTRACT_ADDRESS
                 );
-                var price = await contract.methods.tokenPrice().call();
-                price = parseInt(price);
-                alert(`le prix : ${price} and it is an ${typeof(price)}`);
-                var price1 = 0;
-                price1 = price + 1;
-                alert(`le prix : ${price1} and it is an ${typeof(price1)}`);
                 const balance = await contract.methods
-                  .buyAToken()
-                  .send({ from: window.userAddress , value: price1});
-                alert(`Contract ${CONTRACT_ADDRESS} Bravo! Un Nefturians de plus `);
+                  .claimAToken()
+                  .send({ from: window.userAddress });
+                alert(`Contract ${CONTRACT_ADDRESS} Bravo! Un fakeMeebits de plus `);
               }
           
               window.ABI = [
@@ -587,20 +581,6 @@
       "constant": true
     },
     {
-      "inputs": [],
-      "name": "tokenPrice",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function",
-      "constant": true
-    },
-    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -659,11 +639,10 @@
     },
     {
       "inputs": [],
-      "name": "buyAToken",
+      "name": "claimAToken",
       "outputs": [],
-      "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ];
             </script>

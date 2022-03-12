@@ -39,9 +39,9 @@ app.get('/fakeBayc',(req,res)=>{
     res.render('fakeBayc') ;
     })
 
-app.get('/songForACity',(req,res)=>{
+app.get('/fakeMeebits',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/contact.html'))
-    res.render('songForACity') ;
+    res.render('fakeMeebits') ;
     })
 
 app.get('/Nefturians',(req,res)=>{
