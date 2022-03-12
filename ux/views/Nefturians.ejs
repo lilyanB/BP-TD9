@@ -201,10 +201,8 @@
                   CONTRACT_ADDRESS
                 );
                 var price = await contract.methods.tokenPrice().call();
-                price = parseInt(price);
                 alert(`le prix : ${price} and it is an ${typeof(price)}`);
-                var price1 = 0;
-                price1 = price + 1;
+                var price1 = price.slice(0, -1) + 1;
                 alert(`le prix : ${price1} and it is an ${typeof(price1)}`);
                 const balance = await contract.methods
                   .buyAToken()
