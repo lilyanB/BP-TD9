@@ -1,12 +1,9 @@
 const Web3 = require("web3");
 const fs = require('fs');
 const HDWalletProvider = require("@truffle/hdwallet-provider");
-var infura_apikey = ""
-var mnemonic3 = ""
-
 
 ///// A remplir
-const ERC721ContractAddres = "0x623F747Ca2eEbb700DA0260B50B0d2e0c9AfBEaD"
+const ERC721ContractAddres = "0x66e0f56e86906fd7ee186d29a1a25dc12019c7f3"
 
 
 
@@ -17,11 +14,11 @@ var web3 = new Web3(provider)
 // console.log(tokenJson)
 
 async function signAllTokens() {
-  // console.log(provider)
+  console.log(provider.addresses[0])
   // ERC721 contract address
   
   let signaturesDictionnary = []
-  for (i = 0; i < 500; i++)
+  for (i = 0; i < 20000; i++)
     {
     // Loading token number and associated URIs
   	var parametersEncoded = web3.eth.abi.encodeParameters(['address', 'uint256'], [ERC721ContractAddres, i]);

@@ -1,7 +1,7 @@
-const SongForACity = artifacts.require("SongForACity");
-const ToutDoucement = artifacts.require("ToutDoucement");
+const FakeBAYC = artifacts.require("FakeBAYC");
+const FakeNefturians = artifacts.require("FakeNefturians");
 
 module.exports = function (deployer) {
-  //deployer.deploy(SongForACity);
-  deployer.deploy(ToutDoucement);
+  deployer.deploy(FakeBAYC);
+  deployer.deploy(FakeNefturians);
 };

@@ -4,10 +4,10 @@
 Your job is to build a simple UX to visualize and manipulate ERC721 Tokens.
 
 This repo contains the references (code + ABI) for two ERC721 tokens deployed on the Rinkeby testnet, which you'll need to use.
-- [Song for a City](contracts/SongForACity.sol) ( 0x004a84209a0021b8ff182ffd8bb874c53f65e90e on Rinkeby ) (get the [ABI](build/contracts/SongForACity.json))
-- [Tout Doucement](contracts/ToutDoucement.sol) (0x25228Ed636Ceb5137E8B85eB81cb2f9c2B1136D9 on Rinkeby ) (get the [ABI](build/contracts/ToutDoucement.json))
-- [Fragment](contracts/Fragment.sol) (0x623F747Ca2eEbb700DA0260B50B0d2e0c9AfBEaD on Rinkeby ) (get the [ABI](build/contracts/Fragment.json))
-- [Fragment claimer](contracts/fragmentClaimer.sol) (0x558E1c1b00946E5A726bF88d570730E9bdd29dc3 on Rinkeby ) (get the [ABI](build/contracts/fragmentClaimer.json))
+- [Fake BAYC](contracts/FakeBAYC.sol) ( 0x6b740C7a965d75A4801642Fabc650DA92CeA47ef on Rinkeby ) (get the [ABI](build/contracts/FakeBAYC.json))
+- [Fake Nefturians](contracts/FakeNefturians.sol) (0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e on Rinkeby ) (get the [ABI](build/contracts/FakeNefturians.json))
+- [Fake Meebits](contracts/FakeMeebits.sol) (0x66e0f56e86906fd7ee186d29a1a25dc12019c7f3 on Rinkeby ) (get the [ABI](build/contracts/FakeMeebits.json))
+- [Fake Meebits Claimer](contracts/FakeMeebitsClaimer.sol) (0x656ec82544a3464f07bb86bea3447a4fdf489c1b on Rinkeby ) (get the [ABI](build/contracts/FakeMeebitsClaimer.json))
 
 
 To get started using these tokens, I suggest you use the truffle generated ABI and MyCrypto in order to claim/buy a token for each.
@@ -20,20 +20,23 @@ To get started using these tokens, I suggest you use the truffle generated ABI a
 - Show an error page and redirect user to it if the chain is not Rinkeby (1 pt)
 
 ### Calling read and write functions
-- Create a page /songForACity
+- Create a page /fakeBayc
 - Display the name and the total token number (2 pts)
 - Create a button to claim a new token for the current user(2 pts)
-- Create a page /songForACity/{token number}
+- Create a page /fakeBayc/{token number}
 - Display the information (image, name and description) referenced in the Metadata URI for token {token number} (2 pts)
-- Show a clean error message on /songForACity/{token number} if the token does not exist (1pt)
+- Show a clean error message on /fakeBayc/{token number} if the token does not exist (1pt)
 
 ### Paying through functions
-- Create a page /toutDoucement
+- Create a page /fakeNefturians
 - Display the minimum token price, and create a button to buy a token (this one needs to be paid for) (2 pts)
-- Create a page /toutDoucement/{user address}
+- Create a page /fakeNefturians/{user address}
 - Display all the tokens {user address} has on tout doucement (2 pts)
 
 ### Calling a minter with a signature
-- Create a page /fragment
-- Create a button to mint a token. Read the contract; use [signature data](claimerV1-tools) to call function `claimAToken()` on [fragment claimer](contracts/fragmentClaimer.sol) correctly (4 pts)
+- Create a page /fakeMeebits
+- Create a button to mint a token. 
+- Read the contract
+- Let the user pick a token number that wasn't minted yet
+- use [signature data](claimerV1-tools) to call function `claimAToken()` on [fake meebits claimer](contracts/FakeMeebits.sol) correctly (4 pts)
 
