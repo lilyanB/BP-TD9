@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 app.use(express.static('public'))
+app.use('/fakeBayc', express.static('public'));
+//app.set(__dirname + '/public');
 
 app.listen(4000, ()=>{
     console.log('App listening on port 4000')
@@ -30,6 +32,12 @@ app.get('/fakeBayc',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/about.html'))
     res.render('fakeBayc') ;
     })
+
+app.get('/fakeBayc/:id', function(req, res) {
+    var id = req.params.id;
+    console.log(id)
+    res.render('fakeBayctoken', {id: id });
+    });
 
 app.get('/fakeMeebits',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/contact.html'))
