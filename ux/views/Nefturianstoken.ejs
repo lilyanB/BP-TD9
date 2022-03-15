@@ -43,7 +43,7 @@
               "
             >
               <div class="flex flex-col space-y-6">
-                <h3 class="text-center">Token FAKEBAYC with <%= idiii %> Rinkeby</h3>
+                <h3 class="text-center">Token Nefturians with Rinkeby</h3>
                 <div class="flex flex-col space-y-2">
                   <button
                     onclick="loginWithEth()"
@@ -164,7 +164,7 @@
               // why -> because this specific contract address is on ethereum.
               // When you click login, just make sure your network is Rinkeby and it will all workout.
               async function getContractSymbol() {
-                const CONTRACT_ADDRESS = "0x6b740C7a965d75A4801642Fabc650DA92CeA47ef";
+                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
                 const contract = new window.web3.eth.Contract(
                   window.ABI,
                   CONTRACT_ADDRESS
@@ -176,7 +176,7 @@
               }
         
               async function getBalanceOf() {
-                const CONTRACT_ADDRESS = "0x6b740C7a965d75A4801642Fabc650DA92CeA47ef";
+                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
                 const contract = new window.web3.eth.Contract(
                   window.ABI,
                   CONTRACT_ADDRESS
@@ -186,22 +186,9 @@
                   .call({ from: window.userAddress });
                 alert(`Contract ${CONTRACT_ADDRESS} Balance : ${balance}`);
               }
-
-              async function infoToken() {
-                console.log("infoToken run")
-                URL = "https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/"+"{{<%= idiii %>}}"
-                try{
-                  httpRequest.open('GET', URL, true);
-                }catch(error){
-
-                }
-              }
-              var id = "{{<%= idiii %>}}"
-              console.log(id)
-              infoToken()
             </script>
           </body>
-        <%- include('ABI/fakeBayc'); -%>
+        <%- include('ABI/Nefturians'); -%>
         <%- include('layouts/footer'); -%>
         <%- include('layouts/scripts'); -%>
     </body>

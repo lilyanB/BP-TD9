@@ -89,6 +89,22 @@
                 >
                   Mint NFTree
                 </button>
+
+                <button
+                id="View NFT"
+                onclick="window.location.href='/fakeBayc/1'"
+                class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+                >
+                  View my NFT
+                </button>
+                <button
+                id="View ID"
+                onclick="getBalanceId()"
+                class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+                >
+                  My List ID token
+                </button>
+                <div id="ID"></div>
                 <div class="flex flex-col space-y-2"></div>
               </div>
             </div>
@@ -204,6 +220,36 @@
                   .claimAToken()
                   .send({ from: window.userAddress });
                 alert(`Contract ${CONTRACT_ADDRESS} Bravo! Un NFTrees de plus `);
+              }
+
+              async function getBalanceId() {
+                const change = document.getElementById("ID");
+                change.innerHTML = "My List ID token en attente";
+                const CONTRACT_ADDRESS = "0x6b740C7a965d75A4801642Fabc650DA92CeA47ef";
+                const contract = new window.web3.eth.Contract(
+                  window.ABI,
+                  CONTRACT_ADDRESS
+                );
+                var s = 1;
+                var i = 0;
+                var tableau = []
+                while (s == 1 ) {
+                  console.log(i)
+                  try{
+                    const id = await contract.methods
+                    .tokenOfOwnerByIndex(window.userAddress, i)
+                    .call()
+                  console.log(typeof(id))
+                  tableau.push(parseInt(id));
+                  console.log(tableau);
+                  }catch(error){
+                    s = 0;
+                    console.log("ici")
+                    const change = document.getElementById("ID");
+                    change.innerHTML = "vos Id Token sont : " + tableau;
+                  }
+                  i = i + 1;
+                }              
               }
             </script>
           </body>

@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.static('public'))
 app.use('/fakeBayc', express.static('public'));
+app.use('/Nefturians', express.static('public'));
 //app.set(__dirname + '/public');
 
 app.listen(4000, ()=>{
@@ -35,8 +36,8 @@ app.get('/fakeBayc',(req,res)=>{
 
 app.get('/fakeBayc/:id', function(req, res) {
     var id = req.params.id;
-    console.log(id)
-    res.render('fakeBayctoken', {id: id });
+    //console.log(id)
+    res.render('fakeBayctoken', {idiii: id });
     });
 
 app.get('/fakeMeebits',(req,res)=>{
@@ -48,3 +49,9 @@ app.get('/Nefturians',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/about.html'))
     res.render('Nefturians') ;
     })
+
+app.get('/Nefturians/:adress', function(req, res) {
+    var adress = req.params.adress;
+    console.log(adress)
+    res.render('Nefturianstoken', {iadressd: adress });
+    });
