@@ -4,18 +4,10 @@ const app = new express()
 app.use(express.urlencoded({
     extended: true
 }));
-const { isValidObjectId } = require('mongoose');
-const modele = require('./models/Post');
-
 
 //EJS
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
-
-
-//import routes
-const postsRoute = require('./routes/posts');
-app.use('/', postsRoute);
 
 var bodyParser = require('body-parser')
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
