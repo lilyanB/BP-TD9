@@ -5,6 +5,11 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+//fonciont.js
+const listefonction = require("./fonction.js");
+//listefonction.ChainId()
+//listefonction.lastBlockNumber()
+
 //EJS
 const ejs = require('ejs')
 app.set('view engine', 'ejs')
@@ -24,10 +29,10 @@ app.listen(4000, ()=>{
     console.log('App listening on port 4000')
 })
 
-app.get('/',(req,res)=>{
+/* app.get('/',(req,res)=>{
     //res.sendFile(path.resolve(__dirname, 'dist/index.html'))
     res.render('index') ;
-    })
+    }) */
 
 app.get('/fakeBayc',(req,res)=>{
     var id = "undifened";
@@ -53,6 +58,12 @@ app.get('/Nefturians',(req,res)=>{
 
 app.get('/Nefturians/:adress', function(req, res) {
     var adress = req.params.adress;
-    console.log(adress)
+    //console.log(adress)
     res.render('Nefturianstoken', {iadressd: adress });
+    });
+
+app
+    .route("/")
+    .get(listefonction.ChainIdBlockNum , function(req, res) {
+        console.log(" res : " + res)
     });
