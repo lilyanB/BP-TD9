@@ -230,7 +230,8 @@
                   .send({ from: window.userAddress });
                 alert(`Contract ${CONTRACT_ADDRESS} Bravo! Un NFTrees de plus `);
               }
-
+              var tableau = []
+              
               async function getBalanceId() {
                 const change = document.getElementById("ID");
                 change.innerHTML = "My List ID token en attente";
@@ -241,7 +242,7 @@
                 );
                 var s = 1;
                 var i = 0;
-                var tableau = []
+                tableau = []
                 while (s == 1 ) {
                   console.log(i)
                   try{
@@ -267,40 +268,63 @@
                 if (id == "undifened"){
                   console.log('pas défini')
                   const changemeta = document.getElementById("metadata");
-                  changemeta.innerHTML = "Veuillez mettre un ID correct dans l'URL";
+                  changemeta.innerHTML = "Veuillez mettre un ID dans l'URL";
                 }else{
-                //console.log(id)
-                var URL = "https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/"+id
-                var baseURL = "https://gateway.pinata.cloud/ipfs/"
-                try{
-                  var httpRequest = new XMLHttpRequest();
-                  httpRequest.open('GET', URL, true);
-                  httpRequest.responseType = "json"
-                  httpRequest.send()
-                  httpRequest.onload = function(){
-                  if (httpRequest.status != 200){
-                      alert("Erreur " + httpRequest.status + " : " + httpRequest.statusText);
-                  }else{ 
-                    var result = JSON.stringify(httpRequest.response);
-                    //console.log(result)
-                    result = JSON.parse(result, "$.attributes[*]");
-                    result.image = result.image.slice(7)
-                    const change = document.getElementById("image");
-                    change.innerHTML = "votre NFT : <img src='" + baseURL + result.image + "'>";
-                    //console.log(result.attributes[0].trait_type)
-                    var metadata = [];
-                    result.attributes.forEach(value => {
-                      //console.log(value.trait_type, value.value);
-                      metadata.push("<br>" + value.trait_type + " : " + value.value)
-                    });
+                  console.log(tableau)
+
+                  if(tableau == ""){
+                    console.log('ok')
                     const changemeta = document.getElementById("metadata");
-                    changemeta.innerHTML = "Caractéristiques : "+ metadata;
+                    changemeta.innerHTML = "Veuillez cliquer sur My List ID token";
+                  }else{
+                  
+                  console.log("notre tableau : " +tableau);
+                  console.log("notre id : " +id);
+                  tableau.forEach(elements => {
+                    
+                    
+                    if(elements == id){
+                      //console.log(id)
+                      var URL = "https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/"+id
+                      var baseURL = "https://gateway.pinata.cloud/ipfs/"
+                      try{
+                        var httpRequest = new XMLHttpRequest();
+                        httpRequest.open('GET', URL, true);
+                        httpRequest.responseType = "json"
+                        httpRequest.send()
+                        httpRequest.onload = function(){
+                        if (httpRequest.status != 200){
+                            alert("Erreur " + httpRequest.status + " : " + httpRequest.statusText);
+                        }else{ 
+                          var result = JSON.stringify(httpRequest.response);
+                          //console.log(result)
+                          result = JSON.parse(result, "$.attributes[*]");
+                          result.image = result.image.slice(7)
+                          const change = document.getElementById("image");
+                          change.innerHTML = "votre NFT : <img src='" + baseURL + result.image + "'>";
+                          //console.log(result.attributes[0].trait_type)
+                          var metadata = [];
+                          result.attributes.forEach(value => {
+                            //console.log(value.trait_type, value.value);
+                            metadata.push("<br>" + value.trait_type + " : " + value.value)
+                          });
+                          const changemeta = document.getElementById("metadata");
+                          changemeta.innerHTML = "Caractéristiques : "+ metadata;
+                          reussi = 1
+                        }
+                        };
+                        }catch(error){
 
-                  }
-                  };
-                }catch(error){
+                        }
 
-                }
+                      }else{
+                        const changemeta = document.getElementById("metadata");
+                        changemeta.innerHTML = "Veuillez mettre un ID correct dans l'URLappartenant a My List ID token";
+                      }
+
+              })
+
+            }
               }
               }
             </script>
