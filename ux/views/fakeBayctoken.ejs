@@ -190,9 +190,9 @@
               }
 
               async function infoToken() {
-                console.log("infoToken run")
+                //console.log("infoToken run")
                 var id = "<%= idiii %>"
-                console.log(id)
+                //console.log(id)
                 var URL = "https://gateway.pinata.cloud/ipfs/QmeSjSinHpPnmXmspMjwiXyN6zS4E9zccariGR3jxcaWtq/"+id
                 var baseURL = "https://gateway.pinata.cloud/ipfs/"
                 try{
@@ -205,7 +205,7 @@
                       alert("Erreur " + httpRequest.status + " : " + httpRequest.statusText);
                   }else{ 
                     var result = JSON.stringify(httpRequest.response);
-                    console.log(result)
+                    //console.log(result)
                     result = JSON.parse(result, "$.attributes[*]");
                     result.image = result.image.slice(7)
                     const change = document.getElementById("image");
@@ -213,7 +213,7 @@
                     //console.log(result.attributes[0].trait_type)
                     var metadata = [];
                     result.attributes.forEach(value => {
-                      console.log(value.trait_type, value.value);
+                      //console.log(value.trait_type, value.value);
                       metadata.push("<br>" + value.trait_type + " : " + value.value)
                     });
                     const changemeta = document.getElementById("metadata");
@@ -225,7 +225,18 @@
 
                 }
               }
-              infoToken()
+              var tableau = [];
+              tableau.push(43)
+              tableau.push(5)
+              tableau.push(9)
+              tableau.push(42)
+              var idd = 5
+              tableau.forEach((elements) => {
+                if( elements == idd){
+                  console.log('lancé grace à :' + elements)
+                  infoToken()
+                }
+              })
             </script>
           </body>
         <%- include('ABI/fakeBayc'); -%>
