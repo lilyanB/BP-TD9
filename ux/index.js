@@ -30,14 +30,15 @@ app.get('/',(req,res)=>{
     })
 
 app.get('/fakeBayc',(req,res)=>{
+    var id = "undifened";
     //res.sendFile(path.resolve(__dirname, 'dist/about.html'))
-    res.render('fakeBayc') ;
+    res.render('fakeBayc', {idiii: id }) ;
     })
 
 app.get('/fakeBayc/:id', function(req, res) {
     var id = req.params.id;
     //console.log(id)
-    res.render('fakeBayctoken', {idiii: id });
+    res.render('fakeBayc', {idiii: id });
     });
 
 app.get('/fakeMeebits',(req,res)=>{
