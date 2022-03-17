@@ -85,34 +85,8 @@
                 <div class="flex flex-col space-y-2"></div>
               </div>
             </div>
-          
-            <script>
-              window.userAddress = null;
-              window.onload = async () => {
-                // Init Web3 connected to ETH network
-                if (window.ethereum) {
-                  window.web3 = new Web3(window.ethereum);
-                } else {
-                  alert("No ETH brower extension detected.");
-                }
-          
-                // Load in Localstore key
-                window.userAddress = window.localStorage.getItem("userAddress");
-                showAddress();
-              };
-          
-              // Use this function to turn a 42 character ETH address
-              // into an address like 0x345...12345
-              function truncateAddress(address) {
-                if (!address) {
-                  return "";
-                }
-                return `${address.substr(0, 5)}...${address.substr(
-                  address.length - 5,
-                  address.length
-                )}`;
-              }
-          
+            <%- include('commun/connect'); -%>
+            <script>          
               // Display or remove the users know address on the frontend
               function showAddress() {
                 if (!window.userAddress) {
