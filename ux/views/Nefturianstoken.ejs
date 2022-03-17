@@ -82,7 +82,23 @@
                 >
                   Get Contract Balance
                 </button>
+                <button
+                id="MintNFT"
+                onclick="MintNFT()"
+                class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+                >
+                  Mint NFTree
+                </button>
+                <button
+                id="View NFT"
+                onclick="infoToken()"
+                class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+                >
+                  View my NFT
+                </button>
                 <div class="flex flex-col space-y-2"></div>
+                <div id="div1"></div>
+                <div id="img"></div>
               </div>
             </div>
             <%- include('commun/connect'); -%>
@@ -160,6 +176,89 @@
                   .call({ from: window.userAddress });
                 alert(`Contract ${CONTRACT_ADDRESS} Balance : ${balance}`);
               }
+        
+              async function MintNFT() {
+                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
+                const contract = new window.web3.eth.Contract(
+                  window.ABI,
+                  CONTRACT_ADDRESS
+                );
+                var price = await contract.methods.tokenPrice().call();
+                alert(`le prix : ${price} and it is an ${typeof(price)}`);
+                var price1 = price.slice(0, -1) + 1;
+                alert(`le prix : ${price1} and it is an ${typeof(price1)}`);
+                const balance = await contract.methods
+                  .buyAToken()
+                  .send({ from: window.userAddress , value: price1});
+                alert(`Contract ${CONTRACT_ADDRESS} Bravo! Un Nefturians de plus `);
+              }
+
+              async function getBalanceId() {
+                var tableau = []
+                const CONTRACT_ADDRESS = "0x14e68d0ba29c07478bd68f4a479a0211bd48ca4e";
+                const contract = new window.web3.eth.Contract(
+                  window.ABI,
+                  CONTRACT_ADDRESS
+                );
+                var s = 1;
+                var i = 0;
+                tableau = []
+                while (s == 1 ) {
+                  try{
+                    const id = await contract.methods
+                    .tokenOfOwnerByIndex(window.userAddress, i)
+                    .call()
+                  console.log(typeof(id))
+                  tableau.push(parseInt(id));
+                  console.log(tableau);
+                  }catch(error){
+                    s = 0;
+                    console.log("ici")
+                    return tableau
+                  }
+                  i = i + 1;
+                }              
+              }
+
+              function addElement(text) {
+                var newDiv = document.createElement("div");
+                var newContent = document.createTextNode(text);
+                document.getElementById('div1').appendChild(newContent);
+              }
+
+              function addElementimg(text) {
+                var img = document.createElement("img");
+                img.src = text;
+                var block = document.getElementById("img");
+                block.appendChild(img);
+              }
+
+              async function infoToken() {
+                getBalanceId().then((tableau) => {
+                      var URL = "https://api.nefturians.io/metadata/"
+                      var baseURL = "https://gateway.pinata.cloud/ipfs/"
+                  tableau.forEach(element => {
+                    var httpRequest = new XMLHttpRequest();
+                    httpRequest.open('GET', URL+element, true);
+                    httpRequest.responseType = "json"
+                    httpRequest.send()
+                    httpRequest.onload = function(){
+                      if (httpRequest.status != 200){
+                          alert("Erreur " + httpRequest.status + " : " + httpRequest.statusText);
+                      }else{
+                        console.log(httpRequest.response)
+                        addElement(httpRequest.response.name)
+                        addElementimg(httpRequest.response.image)
+                        //var result = JSON.stringify(httpRequest.response);
+                        //console.log(result)
+                      }
+                    }
+                  });
+                })
+
+              }
+
+
             </script>
           </body>
         <%- include('ABI/Nefturians'); -%>

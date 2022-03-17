@@ -35,11 +35,6 @@ if (window.ethereum) {
   .then((test) => changeID(test))
   .catch((err) => console.error(err.message));
 
-  ethereum.request({ method: "get_block_number" })
-  .then(console.log)
-  .catch((err) => console.error(err.message));
-
-
   ethereum.request({ method: "eth_requestAccounts" })
   .then(console.log)
   .catch((err) => console.error(err.message));
