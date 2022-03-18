@@ -97,10 +97,13 @@
                   View my NFT
                 </button>
                 <div class="flex flex-col space-y-2"></div>
-                <div id="div1"></div>
-                <div id="img"></div>
+                
               </div>
+              
             </div>
+            <table id="div1">
+              <tr><th>Nom</th><th>Image de votre NFT</th></tr>
+            </table>
             <%- include('commun/connect'); -%>
             <script>          
               // Display or remove the users know address on the frontend
@@ -213,24 +216,36 @@
                   console.log(tableau);
                   }catch(error){
                     s = 0;
-                    console.log("ici")
                     return tableau
                   }
                   i = i + 1;
                 }              
               }
 
-              function addElement(text) {
-                var newDiv = document.createElement("div");
+              function addElement(text, url) {
+                /* var newDiv = document.createElement("tr");
                 var newContent = document.createTextNode(text);
                 document.getElementById('div1').appendChild(newContent);
-              }
+ */
+                TR = document.createElement("tr");
+                TD1  = document.createElement("td");
+                TXT1 = document.createTextNode(text);
+                TD1.appendChild(TXT1);
+                TR.appendChild(TD1);
 
-              function addElementimg(text) {
-                var img = document.createElement("img");
-                img.src = text;
+                TD2  = document.createElement("td");
+                const TXT2 = document.createElement("img"); 
+                TXT2.src = url/* 
+                TXT2 = document.createTextNode(`<img src="${url}">`); */
+                TD2.appendChild(TXT2);
+                TR.appendChild(TD2);
+
+                document.getElementById('div1').appendChild(TR);
+
+                /* var img = document.createElement("img");
+                img.src = url;
                 var block = document.getElementById("img");
-                block.appendChild(img);
+                block.appendChild(img); */
               }
 
               async function infoToken() {
@@ -247,8 +262,7 @@
                           alert("Erreur " + httpRequest.status + " : " + httpRequest.statusText);
                       }else{
                         console.log(httpRequest.response)
-                        addElement(httpRequest.response.name)
-                        addElementimg(httpRequest.response.image)
+                        addElement(httpRequest.response.name, httpRequest.response.image)
                         //var result = JSON.stringify(httpRequest.response);
                         //console.log(result)
                       }
